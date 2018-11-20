@@ -491,6 +491,70 @@ class BitcoinGoldRegtest(BitcoinGold):
                     'bf5beb436012afca590b1a11466e2206')
     PEERS = []
 
+class Bithereum(EquihashMixin, BitcoinMixin, Coin):
+    CHUNK_SIZE = 252
+    NAME = "Bithereum"
+    SHORTNAME = "BTH"
+    FORK_HEIGHT = 1
+    P2PKH_VERBYTE = bytes.fromhex("19")
+    P2SH_VERBYTES = [bytes.fromhex("28")]
+    DESERIALIZER = lib_tx.DeserializerEquihashSegWit
+    TX_COUNT = 265026255
+    TX_COUNT_HEIGHT = 499923
+    TX_PER_BLOCK = 50
+    REORG_LIMIT = 1000
+    RPC_PORT = 8332
+    PEERS = []
+
+    @classmethod
+    def header_hash(cls, header):
+        '''Given a header return hash'''
+        height, = util.unpack_le_uint32_from(header, 68)
+        if height >= cls.FORK_HEIGHT:
+            return double_sha256(header)
+        else:
+            return double_sha256(header[:68] + header[100:112])
+
+    @classmethod
+    def electrum_header(cls, header, height):
+        h = super().electrum_header(header, height)
+        h['reserved'] = hash_to_hex_str(header[72:100])
+        h['solution'] = hash_to_hex_str(header[140:])
+        return h
+
+
+class BithereumTestnet(Bithereum):
+    FORK_HEIGHT = 2
+    SHORTNAME = "TBTH"
+    XPUB_VERBYTES = bytes.fromhex("043587CF")
+    XPRV_VERBYTES = bytes.fromhex("04358394")
+    P2PKH_VERBYTE = bytes.fromhex("41")
+    P2SH_VERBYTES = [bytes.fromhex("C4")]
+    WIF_BYTE = bytes.fromhex("EF")
+    TX_COUNT = 0
+    TX_COUNT_HEIGHT = 1
+    NET = 'testnet'
+    RPC_PORT = 8332
+    GENESIS_HASH = ('00000000e0781ebe24b91eedc293adfe'
+                    'a2f557b53ec379e78959de3853e6f9f6')
+    PEERS = []
+
+
+class BithereumRegtest(Bithereum):
+    FORK_HEIGHT = 1
+    SHORTNAME = "TBTH"
+    XPUB_VERBYTES = bytes.fromhex("043587CF")
+    XPRV_VERBYTES = bytes.fromhex("04358394")
+    P2PKH_VERBYTE = bytes.fromhex("6F")
+    P2SH_VERBYTES = [bytes.fromhex("C4")]
+    WIF_BYTE = bytes.fromhex("EF")
+    TX_COUNT = 0
+    TX_COUNT_HEIGHT = 1
+    NET = 'regtest'
+    RPC_PORT = 8332
+    GENESIS_HASH = ('0f9188f13cb7b2c71f2a335e3a4fc328'
+                    'bf5beb436012afca590b1a11466e2206')
+    PEERS = []
 
 class Emercoin(Coin):
     NAME = "Emercoin"
