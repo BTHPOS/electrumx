@@ -524,7 +524,7 @@ class Bithereum(EquihashMixin, BitcoinMixin, Coin):
 
 
 class BithereumTestnet(Bithereum):
-    FORK_HEIGHT = 1
+    FORK_HEIGHT = 2
     SHORTNAME = "TBTH"
     XPUB_VERBYTES = bytes.fromhex("043587CF")
     XPRV_VERBYTES = bytes.fromhex("04358394")
