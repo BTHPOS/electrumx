@@ -503,7 +503,7 @@ class Bithereum(EquihashMixin, BitcoinMixin, Coin):
     TX_COUNT_HEIGHT = 499923
     TX_PER_BLOCK = 50
     REORG_LIMIT = 1000
-    RPC_PORT = 8332
+    RPC_PORT = 18554
     PEERS = []
 
     @classmethod
@@ -534,7 +534,7 @@ class BithereumTestnet(Bithereum):
     TX_COUNT = 0
     TX_COUNT_HEIGHT = 1
     NET = 'testnet'
-    RPC_PORT = 8332
+    RPC_PORT = 19554
     GENESIS_HASH = ('00000000e0781ebe24b91eedc293adfe'
                     'a2f557b53ec379e78959de3853e6f9f6')
     PEERS = []
@@ -551,7 +551,7 @@ class BithereumRegtest(Bithereum):
     TX_COUNT = 0
     TX_COUNT_HEIGHT = 1
     NET = 'regtest'
-    RPC_PORT = 8332
+    RPC_PORT = 20554
     GENESIS_HASH = ('0f9188f13cb7b2c71f2a335e3a4fc328'
                     'bf5beb436012afca590b1a11466e2206')
     PEERS = []
