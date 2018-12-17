@@ -495,7 +495,7 @@ class Bithereum(EquihashMixin, BitcoinMixin, Coin):
     CHUNK_SIZE = 252
     NAME = "Bithereum"
     SHORTNAME = "BTH"
-    FORK_HEIGHT = 1
+    FORK_HEIGHT = 555555
     P2PKH_VERBYTE = bytes.fromhex("19")
     P2SH_VERBYTES = [bytes.fromhex("28")]
     DESERIALIZER = lib_tx.DeserializerEquihashSegWit
@@ -504,7 +504,10 @@ class Bithereum(EquihashMixin, BitcoinMixin, Coin):
     TX_PER_BLOCK = 50
     REORG_LIMIT = 1000
     RPC_PORT = 18554
-    PEERS = []
+    PEERS = [
+        'node1-electrumx.bithereum.network s50002',
+        'node2-electrumx.bithereum.network s50002'
+    ]
 
     @classmethod
     def header_hash(cls, header):
@@ -529,7 +532,7 @@ class BithereumTestnet(Bithereum):
     XPUB_VERBYTES = bytes.fromhex("043587CF")
     XPRV_VERBYTES = bytes.fromhex("04358394")
     P2PKH_VERBYTE = bytes.fromhex("41")
-    P2SH_VERBYTES = [bytes.fromhex("C4")]
+    P2SH_VERBYTES = [bytes.fromhex("3F")]
     WIF_BYTE = bytes.fromhex("EF")
     TX_COUNT = 0
     TX_COUNT_HEIGHT = 1
@@ -537,7 +540,10 @@ class BithereumTestnet(Bithereum):
     RPC_PORT = 19554
     GENESIS_HASH = ('00000000e0781ebe24b91eedc293adfe'
                     'a2f557b53ec379e78959de3853e6f9f6')
-    PEERS = []
+    PEERS = [
+        'node1-testnet-electrumx.bithereum.network s50002',
+        'node2-testnet-electrumx.bithereum.network s50002'
+    ]
 
 
 class BithereumRegtest(Bithereum):
