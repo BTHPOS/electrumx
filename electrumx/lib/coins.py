@@ -505,8 +505,8 @@ class Bithereum(EquihashMixin, BitcoinMixin, Coin):
     REORG_LIMIT = 1000
     RPC_PORT = 18554
     PEERS = [
-        'node1-electrumx.bithereum.network s50002',
-        'node2-electrumx.bithereum.network s50002'
+        'node1.bithereum.network s50002',
+        'node2.bithereum.network s50002'
     ]
 
     @classmethod
@@ -541,8 +541,8 @@ class BithereumTestnet(Bithereum):
     GENESIS_HASH = ('00000000e0781ebe24b91eedc293adfe'
                     'a2f557b53ec379e78959de3853e6f9f6')
     PEERS = [
-        'node1-testnet-electrumx.bithereum.network s50002',
-        'node2-testnet-electrumx.bithereum.network s50002'
+        'node1-testnet.bithereum.network s50002',
+        'node2-testnet.bithereum.network s50002'
     ]
 
 
